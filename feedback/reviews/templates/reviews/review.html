@@ -6,8 +6,12 @@
     <title>Your Review</title>
 </head>
 <body>
-    <form method="POST">
-        <label for="username">Yuour name</label>
+    <form action="/" method="POST">
+        {% csrf_token %}
+        {% if has_error %}
+            <p>Please enter valid name</p>
+        {% endif %}
+        <label for="username">Your name</label>
         <input id="username" name="username" type="text">
         <button>Send</button>
     </form>    
