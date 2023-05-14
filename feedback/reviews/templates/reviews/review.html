@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
 </head>
 <body>
-    <div class="form-control {% if form.user_name.errors %}error{% endif %}">
     <form action="/" method="POST">
-        {% csrf_token %}
-        {{ form.user_name.label_tag }}
-        {{ form.user_name }}
-        {{ form.user_name.errors }}
-        <button>Send</button>
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-control {% if field.errors %}error{% endif %}">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <button>Send</button>
     </form>
-    </div>
 </body>
 </html>
